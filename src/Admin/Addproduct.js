@@ -8,71 +8,37 @@ function Addproduct() {
   const { products,setProducts} = useContext(mycontext);
 
 
-  // const handleInputChange = async (product) => {
-  //   product.preventDefault();
-  //   const productname = product.target.title.value;
-  //   const producttype = product.target.category.value;
-  //   const productimage = product.target.image.files[0];
-  //   const productprice = product.target.price.value;
-  //   const productdescription = product.target.description.value;
+  const handleInputChange = async (product) => {
+    product.preventDefault();
+    const productname = product.target.title.value;
+    const producttype = product.target.category.value;
+    const productimage = product.target.image.files[0];
+    const productprice = product.target.price.value;
+    const productdescription = product.target.description.value;
 
-  //   const imageLink = await uploadToCloudinary(productimage);
-
-  //   const formData = new FormData();
-  //   formData.append("image", imageLink);
-  //   formData.append("title", productname);
-  //   formData.append("price", productprice);
-  //   formData.append("description", productdescription);
-  //   formData.append("category", producttype);
-
-  //   try {
-  //     const response = await Axios.post("/admin/products", formData);
-  //     if (response.status === 200) {
-  //       console.log(response)
-  //       setProducts(response.data);
-  //         // navigate("/dashboard/products");
-  //     }
-  //  } catch (error) {
-  //     console.error(error.response.data.message)
-  //  }
-  // };
-
-  const handleInputChange = async (event) => {
-    event.preventDefault();
-  
-    const productname = event.target.title.value;
-    const producttype = event.target.category.value;
-    const productimage = event.target.image.files[0];
-    const productprice = event.target.price.value;
-    const productdescription = event.target.description.value;
-  
-    // Upload image to Cloudinary
     const imageLink = await uploadToCloudinary(productimage);
-  
+
     const formData = new FormData();
     formData.append("image", imageLink);
     formData.append("title", productname);
     formData.append("price", productprice);
     formData.append("description", productdescription);
     formData.append("category", producttype);
-  
+
     try {
       const response = await Axios.post("/admin/products", formData);
-      if (response.status === 201) { // Assuming 201 status code for successful creation
-        console.log("Product added successfully:", response.data);
-        setProducts([...products, response.data]); // Update products state with the new product
-      } else {
-        console.error("Failed to add product:", response.data.message);
+      if (response.status === 200) {
+        console.log(response)
+        setProducts(response.data);
+          // navigate("/dashboard/products");
       }
-    } catch (error) {
-      console.error("Error adding product:", error);
-    }
+   } catch (error) {
+      console.error(error.response.data.message)
+   }
   };
+
+
   
-
-
-
-
   return (
     <>
       <div className="containeraddprod">
