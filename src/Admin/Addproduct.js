@@ -30,15 +30,12 @@ function Addproduct() {
       if (response.status === 200) {
         console.log(response)
         setProducts(response.data);
-          // navigate("/dashboard/products");
+        //  navigate("/dashboard/products");
       }
    } catch (error) {
       console.error(error.response.data.message)
    }
   };
-
-
-  
   return (
     <>
       <div className="containeraddprod">
