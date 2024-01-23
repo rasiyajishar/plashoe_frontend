@@ -25,7 +25,7 @@ import Paymentsuccess from './Components/Paymentsuccess';
 import Userdetails from './Admin/Userdetails';
 import Wishlist from './Components/Wishlist';
 
-
+require('dotenv').config();
 
 export const Axios= axios.create({
   baseURL : process.env.REACT_APP_BASE_URL,
